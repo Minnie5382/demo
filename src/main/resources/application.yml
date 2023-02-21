@@ -1,0 +1,12 @@
+# 포트 번호를 정의하고 DB 연동을 위한 값들을 설정하는 파일
+server:
+  port: 9000
+
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:mysql://rich.c4t2uq2ojemi.ap-northeast-2.rds.amazonaws.com:3306/RichBaemin # ?autoReconnect=true # 변경해주세요
+    username:  admin # 변경해주세요
+    password:  shameonme # 변경해주세요
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
