@@ -9,6 +9,7 @@ import com.example.demo.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.*;
 import java.util.List;
 
 import static com.example.demo.config.BaseResponseStatus.*;
@@ -36,8 +37,20 @@ public class ShopController {
     @GetMapping("/{shopId}") // GET http://127.0.0.1:9000/shops/:shopId
     public BaseResponse<GetShopHomeRes> getShopHome(@PathVariable("shopId") int shopId) {
         try{
-            GetShopHomeRes GetShopHomeRes = shopProvider.retrieveShopHome(shopId);
-            return new BaseResponse<>(GetShopHomeRes);
+            GetShopHomeRes getShopHomeRes = shopProvider.retrieveShopHome(shopId);
+            return new BaseResponse<>(getShopHomeRes);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    // 카테고리 별 가게 리스트 불러오기 메서드
+    @ResponseBody
+    @GetMapping("") // GET http://127.0.0.1:9000//shops?:category=백반죽국수
+    public BaseResponse<List<GetShopListRes>> getShopHome(@RequestParam("category") String category) {
+        try{
+            List<GetShopListRes> getShopListRes = shopProvider.retrieveShopList(category);
+            return new BaseResponse<>(getShopListRes);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
         }

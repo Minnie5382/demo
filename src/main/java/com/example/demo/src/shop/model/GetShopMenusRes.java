@@ -1,4 +1,3 @@
-// 가게 메뉴판을 보여주는 클래스
 package com.example.demo.src.shop.model;
 import java.util.*;
 
@@ -10,12 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class GetShopMenusRes {
     private int menuId;
     private String menuGroup;
     private String name;
-    private int price;
+    private int Price;
     private String menuImgUrl;
     private String isRepresent;
-
 }

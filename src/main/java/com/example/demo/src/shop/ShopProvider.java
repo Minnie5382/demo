@@ -1,16 +1,17 @@
 package com.example.demo.src.shop;
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.shop.ShopDao;
 import com.example.demo.src.shop.model.*;
 import com.example.demo.utils.JwtService;
-import com.example.demo.utils.SHA256;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.lang.*;
 
 import static com.example.demo.config.BaseResponseStatus.*;
 
@@ -55,6 +56,40 @@ public class ShopProvider {
             return shopDao.checkShopExists(shopId);
         } catch (Exception exception){
             logger.error("App - checkShopExists Provider Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    // 카테고리 별 가게 목록 불러오기 메서드
+    public List<GetShopListRes> retrieveShopList(String category) throws BaseException {
+        // Validation : 카테고리가 존재하는지?
+        if(checkCategoryExists(category) == false){
+            throw new BaseException(CATEGORIES_EMPTY_CATEGORY);
+        }
+        try {
+            List<GetShopListRes> getShopListRes = shopDao.getShopList(category);
+            return getShopListRes;
+
+        } catch (Exception exception) {
+            logger.error("App - retrieveShopList Provider Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+
+
+    // 카테고리가 존재하는지? 메서드
+    public boolean checkCategoryExists(String category) throws BaseException{
+        ArrayList<String> categoryList = new ArrayList<>(Arrays.asList(
+                "1인분", "족발보쌈","찜탕찌개","돈까스회일식","피자",
+                "고기구이","야식","양식","치킨","중식",
+                "아시안","백반죽국수","도시락","분식","카페디저트",
+                "패스트푸드"));
+        try{
+            boolean categoryExists = categoryList.contains(category);
+            return categoryExists;
+        } catch (Exception exception){
+            logger.error("App - checkCategoryExists Provider Error", exception);
             throw new BaseException(DATABASE_ERROR);
         }
     }

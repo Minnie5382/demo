@@ -1,6 +1,5 @@
 package com.example.demo.src.menu.model;
 
-import java.util.*;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

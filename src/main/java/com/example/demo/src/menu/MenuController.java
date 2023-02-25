@@ -35,8 +35,8 @@ public class MenuController {
 
     // 메뉴 상세 페이지 불러오기 메서드
     @ResponseBody
-    @GetMapping("") // GET http://127.0.0.1:9000/menus?menuId
-    public BaseResponse<List<GetMenusRes>> getMenus(@RequestParam int menuId) {
+    @GetMapping("/{menuId}") // GET http://127.0.0.1:9000/menus/:menuId
+    public BaseResponse<List<GetMenusRes>> getMenus(@PathVariable int menuId) {
         try{
             List<GetMenusRes> getMenusRes = menuProvider.retrieveMenus(menuId);
             return new BaseResponse<>(getMenusRes);

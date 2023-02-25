@@ -34,7 +34,15 @@ public enum BaseResponseStatus {
     POST_USERS_EXISTS_TELNUM(false,2020,"이미 가입된 휴대폰 번호입니다."),
 
     // shops
-    SHOPS_EMPTY_SHOP_ID(false, 2050, "가게 아이디 값을 확인해주세요."),
+    SHOPS_EMPTY_SHOP_ID(false, 2050, "존재하지 않거나 접근 불가한 가게입니다."),
+    //orders
+    ORDERS_EMPTY_ORDER_ID(false, 2060, "존재하지 않거나 접근 불가한 주문건입니다."),
+
+    // menus
+    MENUS_EMPTY_MENU_ID(false, 2080, "존재하지 않거나 접근 불가한 메뉴입니다."),
+
+    // category
+    CATEGORIES_EMPTY_CATEGORY(false, 2090, "존재하지 않는 카테고리입니다."),
 
 
     /**

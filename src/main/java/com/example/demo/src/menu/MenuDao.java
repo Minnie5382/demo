@@ -66,4 +66,22 @@ public class MenuDao {
                 checkShopIdParams);
     }
 
+    // menuId가 들어오면 해당 가게가 존재하는지?
+    public int checkMenuExists(int menuId){
+        String checkShopQuery = "select exists(select shopId from Menu where menuId = ?);";
+        int checkMenuIdParas = menuId;
+        return this.jdbcTemplate.queryForObject(checkShopQuery,
+                int.class,
+                checkMenuIdParas);
+    }
+
+    // menuId가 들어오면 해당 메뉴가 있는지?
+    public int checkShopOfMenuExists(int menuId) {
+        String checkShopQuery = "select exists(select menuId from Menu where menuId = ?);";
+        int checkShopOfMenuParams = menuId;
+        return this.jdbcTemplate.queryForObject(checkShopQuery,
+                int.class,
+                checkShopOfMenuParams);
+    }
+
 }

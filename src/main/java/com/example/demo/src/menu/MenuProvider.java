@@ -33,11 +33,12 @@ public class MenuProvider {
 
     // 메뉴 상세보기 메서드
     public List<GetMenusRes> retrieveMenus(int menuId) throws BaseException {
-        // Validation : 가게가 존재하는지? -> 일단 보류
-//        if(checkShopExists(shopId) == 0)
-//        {
-//            throw new BaseException(SHOPS_EMPTY_SHOP_ID);
-//        }
+        if(checkMenuExists(menuId) == 0){
+            throw new BaseException(MENUS_EMPTY_MENU_ID);
+        }
+        else if(checkShopOfMenuExists(menuId) == 0){
+            throw new BaseException(SHOPS_EMPTY_SHOP_ID);
+        }
         try {
             List<GetMenusRes> getMenus = menuDao.selectMenus(menuId);
 
@@ -49,12 +50,22 @@ public class MenuProvider {
         }
     }
 
-    // 가게가 존재하는지? 메서드
-    public int checkShopExists(int shopId) throws BaseException{
+    // 해당 menuId에 해당하는 가게가 존재하는지?
+    public int checkShopOfMenuExists(int menuId) throws BaseException{
         try{
-            return menuDao.checkShopExists(shopId);
+            return menuDao.checkShopOfMenuExists(menuId);
         } catch (Exception exception){
-            logger.error("App - checkShopExists Provider Error", exception);
+            logger.error("App - checkShopOfMenuExists Provider Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    // 해당 menuId에 해당하는 메뉴가 존재하는지?
+    public int checkMenuExists(int menuId) throws BaseException{
+        try{
+            return menuDao.checkMenuExists(menuId);
+        } catch (Exception exception){
+            logger.error("App - checkMenuExists Provider Error", exception);
             throw new BaseException(DATABASE_ERROR);
         }
     }

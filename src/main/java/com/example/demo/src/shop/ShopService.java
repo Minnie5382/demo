@@ -1,6 +1,7 @@
 package com.example.demo.src.shop;
 
 import com.example.demo.config.BaseException;
+import com.example.demo.src.menu.model.GetMenusRes;
 import com.example.demo.src.shop.ShopDao;
 import com.example.demo.src.shop.ShopProvider;
 import com.example.demo.src.shop.model.*;
@@ -12,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.example.demo.config.BaseResponseStatus.*;
 
@@ -31,5 +34,8 @@ public class ShopService {
         this.jwtService = jwtService;
 
     }
+
+
+
 }
 

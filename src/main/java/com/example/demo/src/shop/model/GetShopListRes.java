@@ -1,4 +1,3 @@
-// 가게 정보를 보여주는 클래스
 package com.example.demo.src.shop.model;
 import java.util.*;
 
@@ -10,16 +9,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class GetShopInfoRes {
+public class GetShopListRes {
+    // 가게id, 가게이름, 가게로고id, 가게로고, 가게 평점, 리뷰 개수, 대표메뉴, 최소주문금액, 포장가능여부, 배달팁, 배달예상시간
     private int shopId;
     private String shopName;
-    private List<GetShopHomeImgRes> homeImgs;
+    private String LogoImgUrl;
     private float avgStar;
     private int reviewCount;
-    private int ownerComCount;
-    private int dibCount;
+    private String repreMenu;
     private int leastPrice;
-    private int delTimeFrom;
-    private int delTimeTo;
+    private String isPickup;
     private int deliveryTip;
+    private int delTimeFrom;
+    private int getDelTimeTo;
+
+
 }
