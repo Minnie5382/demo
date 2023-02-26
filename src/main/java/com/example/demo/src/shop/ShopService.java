@@ -1,7 +1,6 @@
 package com.example.demo.src.shop;
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.menu.model.GetMenusRes;
 import com.example.demo.src.shop.ShopDao;
 import com.example.demo.src.shop.ShopProvider;
 import com.example.demo.src.shop.model.*;

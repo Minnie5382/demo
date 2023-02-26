@@ -32,6 +32,10 @@ public enum BaseResponseStatus {
     POST_USERS_EMPTY_TELNUM(false, 2018, "휴대폰 번호를 입력해주세요."),
     POST_USERS_INVALID_TELNUM(false, 2019, "휴대폰 번호 형식을 확인해주세요."),
     POST_USERS_EXISTS_TELNUM(false,2020,"이미 가입된 휴대폰 번호입니다."),
+    // reviews
+    POST_REVIEWS_INVALID_CONTENT(false,2030, "최대 입력 글자 수는 500자입니다."),
+    DELETE_FAIL_REVIEW(false, 2031, "리뷰를 삭제하지 못했습니다."),
+    REVIEWS_EMPTY_REVIEW_ID(false,2032,"존재하지 않거나 삭제된 리뷰입니다."),
 
     // shops
     SHOPS_EMPTY_SHOP_ID(false, 2050, "존재하지 않거나 접근 불가한 가게입니다."),

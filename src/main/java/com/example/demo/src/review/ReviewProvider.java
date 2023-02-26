@@ -30,17 +30,17 @@ public class ReviewProvider {
     }
 
     // 가게 리뷰 목록 불러오기 메서드
-    public List<GetShopReviewsRes> retrieveReviews(int shopId) throws BaseException {
+    public List<GetShopReviewsRes> retrieveShopReviews(int shopId) throws BaseException {
         // Validation : 가게가 존재하는지?
         if(checkShopExists(shopId) == 0){
             throw new BaseException(SHOPS_EMPTY_SHOP_ID);
         }
         try {
-            List<GetShopReviewsRes> getReviewsRes = reviewDao.getShopReviews(shopId);
-            return getReviewsRes;
+            List<GetShopReviewsRes> getShopReviewsRes = reviewDao.getShopReviews(shopId);
+            return getShopReviewsRes;
 
         } catch (Exception exception) {
-            logger.error("App - retrieveReviews Provider Error", exception);
+            logger.error("App - retrieveShopReviews Provider Error", exception);
             throw new BaseException(DATABASE_ERROR);
         }
     }
@@ -54,5 +54,32 @@ public class ReviewProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    // 유저 리뷰 목록 불러오기 메서드
+    public List<GetUserReviewsRes> retrieveUserReviews(int userId) throws BaseException {
+        // Validation : 유저가 존재하는지?
+        if(checkUserExists(userId) == 0){
+            throw new BaseException(USERS_EMPTY_USER_ID);
+        }
+        try {
+            List<GetUserReviewsRes> getUserReviewsRes = reviewDao.getUserReviews(userId);
+            return getUserReviewsRes;
+
+        } catch (Exception exception) {
+            logger.error("App - retrieveUserReviews Provider Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    // 존재하는 유저인지?
+    public int checkUserExists(int userId) throws BaseException{
+        try{
+            return reviewDao.checkUserExists(userId);
+        } catch (Exception exception){
+            logger.error("App - checkUserExists Provider Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
 
 }

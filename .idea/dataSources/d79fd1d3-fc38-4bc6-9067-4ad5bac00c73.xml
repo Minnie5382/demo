@@ -2099,6 +2099,7 @@ userId</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="475" parent="300" name="reviewId">
+      <AutoIncrement>1</AutoIncrement>
       <Comment>리뷰 id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -2107,59 +2108,53 @@ userId</ColNames>
     <column id="476" parent="300" name="shopId">
       <Comment>가게 id</Comment>
       <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="477" parent="300" name="userId">
       <Comment>작성자 id</Comment>
       <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="478" parent="300" name="star">
-      <Comment>별점</Comment>
-      <DasType>decimal(1)|0s</DasType>
-      <DefaultExpression>5</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="478" parent="300" name="orderId">
+      <Comment>주문 id</Comment>
+      <DasType>int|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="479" parent="300" name="content">
-      <Comment>리뷰 내용</Comment>
-      <DasType>text|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="479" parent="300" name="star">
+      <Comment>별점</Comment>
+      <DasType>int|0s</DasType>
+      <DefaultExpression>5</DefaultExpression>
       <Position>5</Position>
     </column>
-    <column id="480" parent="300" name="status">
+    <column id="480" parent="300" name="content">
+      <Comment>리뷰 내용</Comment>
+      <DasType>text|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="481" parent="300" name="status">
       <Comment>상태</Comment>
       <DasType>varchar(10)|0s</DasType>
       <DefaultExpression>&apos;ACTIVE&apos;</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>6</Position>
+      <Position>7</Position>
     </column>
-    <column id="481" parent="300" name="createdAt">
+    <column id="482" parent="300" name="createdAt">
       <Comment>생성일시</Comment>
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>7</Position>
+      <Position>8</Position>
     </column>
-    <column id="482" parent="300" name="updatedAt">
+    <column id="483" parent="300" name="updatedAt">
       <Comment>갱신일시</Comment>
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
-      <Position>8</Position>
-    </column>
-    <column id="483" parent="300" name="orderId">
-      <Comment>주문 id</Comment>
-      <DasType>int|0s</DasType>
       <Position>9</Position>
     </column>
     <index id="484" parent="300" name="PRIMARY">
-      <ColNames>reviewId
-shopId
-userId</ColNames>
+      <ColNames>reviewId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -2175,6 +2170,7 @@ userId</ColNames>
       <Position>1</Position>
     </column>
     <column id="487" parent="301" name="reviewImgId">
+      <AutoIncrement>1</AutoIncrement>
       <Comment>리뷰 이미지 id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -2209,8 +2205,7 @@ userId</ColNames>
       <Position>6</Position>
     </column>
     <index id="492" parent="301" name="PRIMARY">
-      <ColNames>reviewId
-reviewImgId</ColNames>
+      <ColNames>reviewImgId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -2488,137 +2483,135 @@ ownerId</ColNames>
     <column id="537" parent="305" name="nickname">
       <Comment>유저 닉네임</Comment>
       <DasType>varchar(45)|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="538" parent="305" name="grade">
       <Comment>유저 등급</Comment>
       <DasType>char(10)|0s</DasType>
+      <DefaultExpression>&apos;고마운분&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="539" parent="305" name="email">
       <Comment>유저 이메일 주소</Comment>
       <DasType>varchar(45)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
     <column id="540" parent="305" name="userTelNum">
       <Comment>유저 휴대폰 번호</Comment>
       <DasType>varchar(15)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="541" parent="305" name="profileImageUrl">
-      <Comment>프로필 사진</Comment>
-      <DasType>text|0s</DasType>
-      <Position>6</Position>
-    </column>
-    <column id="542" parent="305" name="pointBalance">
+    <column id="541" parent="305" name="pointBalance">
       <Comment>배민포인트 잔액</Comment>
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>7</Position>
+      <Position>6</Position>
     </column>
-    <column id="543" parent="305" name="createdAt">
+    <column id="542" parent="305" name="createdAt">
       <Comment>생성 일시</Comment>
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>8</Position>
+      <Position>7</Position>
     </column>
-    <column id="544" parent="305" name="updatedAt">
+    <column id="543" parent="305" name="updatedAt">
       <Comment>갱신 일시</Comment>
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
-      <Position>9</Position>
+      <Position>8</Position>
     </column>
-    <column id="545" parent="305" name="status">
+    <column id="544" parent="305" name="status">
       <Comment>ACTIVE :활성화 INACTIVE : 휴면 DELETE : 탈퇴</Comment>
       <DasType>varchar(10)|0s</DasType>
       <DefaultExpression>&apos;ACTIVE&apos;</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>10</Position>
+      <Position>9</Position>
     </column>
-    <column id="546" parent="305" name="location">
+    <column id="545" parent="305" name="location">
       <Comment>사용자 위치</Comment>
       <DasType>varchar(45)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="546" parent="305" name="emailReceive">
+      <Comment>메일 수신동의</Comment>
+      <DasType>varchar(5)|0s</DasType>
+      <DefaultExpression>&apos;N&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="547" parent="305" name="emailReceive">
-      <Comment>메일 수신동의</Comment>
-      <DasType>char(1)|0s</DasType>
+    <column id="547" parent="305" name="smsReceive">
+      <Comment>SMS 수신동의</Comment>
+      <DasType>varchar(5)|0s</DasType>
       <DefaultExpression>&apos;N&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="548" parent="305" name="smsReceive">
-      <Comment>SMS 수신동의</Comment>
-      <DasType>char(1)|0s</DasType>
-      <DefaultExpression>&apos;N&apos;</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="548" parent="305" name="profileImgUrl">
+      <DasType>text|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="549" parent="305" name="profileImgUrl">
-      <DasType>text|0s</DasType>
-      <Position>14</Position>
-    </column>
-    <index id="550" parent="305" name="PRIMARY">
+    <index id="549" parent="305" name="PRIMARY">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="551" parent="305" name="PRIMARY">
+    <key id="550" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="552" parent="306" name="userId">
+    <column id="551" parent="306" name="userId">
       <Comment>유저 id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="553" parent="306" name="userAccountId">
+    <column id="552" parent="306" name="userAccountId">
       <Comment>유저 계좌 id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="554" parent="306" name="accountNumber">
+    <column id="553" parent="306" name="accountNumber">
       <Comment>계좌 번호</Comment>
       <DasType>varchar(25)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="555" parent="306" name="bank">
+    <column id="554" parent="306" name="bank">
       <Comment>은행명</Comment>
       <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="556" parent="306" name="accessCode">
+    <column id="555" parent="306" name="accessCode">
       <Comment>보안 코드</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="557" parent="306" name="status">
+    <column id="556" parent="306" name="status">
       <Comment>ACTIVE :활성화INACTIVE : 비활성화DELETE : 삭제됨</Comment>
       <DasType>varchar(10)|0s</DasType>
       <DefaultExpression>&apos;ACTIVE&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="558" parent="306" name="createdAt">
+    <column id="557" parent="306" name="createdAt">
       <Comment>생성일시</Comment>
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="559" parent="306" name="updatedAt">
+    <column id="558" parent="306" name="updatedAt">
       <Comment>갱신일시</Comment>
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
@@ -2626,79 +2619,79 @@ ownerId</ColNames>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>8</Position>
     </column>
-    <index id="560" parent="306" name="PRIMARY">
+    <index id="559" parent="306" name="PRIMARY">
       <ColNames>userId
 userAccountId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="561" parent="306" name="PRIMARY">
+    <key id="560" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="562" parent="307" name="userId">
+    <column id="561" parent="307" name="userId">
       <Comment>유저 id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="563" parent="307" name="cardId">
+    <column id="562" parent="307" name="cardId">
       <Comment>카드 id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="564" parent="307" name="cardNumber">
+    <column id="563" parent="307" name="cardNumber">
       <Comment>카드 번호</Comment>
       <DasType>varchar(16)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="565" parent="307" name="EXP">
+    <column id="564" parent="307" name="EXP">
       <Comment>유효기간</Comment>
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="566" parent="307" name="accessCode">
+    <column id="565" parent="307" name="accessCode">
       <Comment>보안 코드</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="567" parent="307" name="password">
+    <column id="566" parent="307" name="password">
       <Comment>비밀번호</Comment>
       <DasType>varchar(45)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="568" parent="307" name="status">
+    <column id="567" parent="307" name="status">
       <DasType>varchar(10)|0s</DasType>
       <DefaultExpression>&apos;ACTIVE&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="569" parent="307" name="createdAt">
+    <column id="568" parent="307" name="createdAt">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="570" parent="307" name="updatedAt">
+    <column id="569" parent="307" name="updatedAt">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>9</Position>
     </column>
-    <index id="571" parent="307" name="PRIMARY">
+    <index id="570" parent="307" name="PRIMARY">
       <ColNames>userId
 cardId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="572" parent="307" name="PRIMARY">
+    <key id="571" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

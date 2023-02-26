@@ -16,6 +16,4 @@ public class GetDeliveryStatusRes {
     private int leftTime; // 남은시간(분)
     private String address;
     private String shopAddress;
-
-
 }
