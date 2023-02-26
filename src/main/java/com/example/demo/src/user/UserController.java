@@ -38,8 +38,35 @@ public class UserController {
     @PostMapping("") // POST http://vici-minn.shop/users
     public BaseResponse<PostUserRes> createUser(@RequestBody PostUserReq postUserReq) {
         try{
-            PostUserRes postUserRes = userService.createUser(postUserReq);
+            PostUserRes postUserRes = userService.createUser(postUserReq.getUserTelNum(), postUserReq);
             return new BaseResponse<>(postUserRes);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    // 유저 정보 수정 메서드
+    @ResponseBody
+    @PatchMapping("/{userId}") // POST http://vici-minn.shop/users
+    public BaseResponse<String> updateUser(@PathVariable("userId") int userId, @RequestBody PatchUserReq patchUserReq) {
+        try{
+            userService.updateUser(userId, patchUserReq);
+            String result = "정상적으로 수정되었습니다.";
+            return new BaseResponse<>(result);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    // 회원 탈퇴 메서드
+    @ResponseBody
+    @PatchMapping("/{userId}/status") // PATCH http://vici-minn.shop:9000/users/:userId/status
+    public BaseResponse<String> deleteUser(@PathVariable ("userId") int userId) {
+        try{
+            userService.deleteUser(userId);
+            String message = "성공적으로 탈퇴 되었습니다.";
+
+            return new BaseResponse<>(message);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
         }

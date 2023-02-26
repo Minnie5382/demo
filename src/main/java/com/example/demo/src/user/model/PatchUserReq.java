@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PostUserReq {
+public class PatchUserReq {
     private String nickname;
     private String email;
     private String userTelNum;
@@ -19,6 +19,6 @@ public class PostUserReq {
     private String emailReceive;
     private String smsReceive;
     private String profileImgUrl;
-    public PostUserReq() {} // json 형식으로 request body를 받아오기 위함
+    public PatchUserReq() {} // json 형식으로 request body를 받아오기 위함
 
 }

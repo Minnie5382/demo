@@ -10,5 +10,4 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PostUserRes {
     private int userId;
-
 }

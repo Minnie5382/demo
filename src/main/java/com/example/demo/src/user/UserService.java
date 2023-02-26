@@ -32,13 +32,57 @@ public class UserService {
         this.jwtService = jwtService;
     }
 
-    public PostUserRes createUser(PostUserReq postUserReq) throws BaseException {
+    public PostUserRes createUser(String userTelNum, PostUserReq postUserReq) throws BaseException {
         try {
-            int userId = userDao.insertUser(postUserReq);
+            int userId = userDao.insertUser(userTelNum, postUserReq);
             return new PostUserRes(userId);
 
         } catch (Exception exception) {
             logger.error("App - createUser Service Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void updateUser(int userId, PatchUserReq patchUserReq) throws BaseException {
+        try {
+//            // validation : 존재하는 유저인지?
+//            if(checkUserExists(userId) == 0) {
+//                throw new BaseException(USERS_EMPTY_USER_ID);
+//            }
+            int result = userDao.updateUser(userId, patchUserReq);
+            if (result == 0) {
+                throw new BaseException(UPDATE_FAIL_USER);
+            }
+
+        } catch (Exception exception) {
+            logger.error("App - updateUser Service Error", exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+//    // 존재하는 유저인지?
+//    public int checkUserExists(int userId) throws BaseException{
+//        try{
+//            return userDao.checkUserExists(userId);
+//        } catch (Exception exception){
+//            logger.error("App - checkUserExists Provider Error", exception);
+//            throw new BaseException(DATABASE_ERROR);
+//        }
+//    }
+
+    // 회원 탈퇴 메서드
+    public void deleteUser(int userId) throws BaseException {
+//        // Validation : 존재하는 유저인지?
+//        if (checkUserExists(shopId) == 0) {
+//            throw new BaseException(USERS_EMPTY_USER_ID);
+//        }
+        try {
+            int result = userDao.deleteUser(userId);
+            if (result == 0) {
+                throw new BaseException(DELETE_FAIL_REVIEW);
+            }
+
+        } catch (Exception exception) {
+            logger.error("App - deleteReview Service Error", exception);
             throw new BaseException(DATABASE_ERROR);
         }
     }
