@@ -2,6 +2,7 @@ package com.example.demo.src.order;
 
 import com.example.demo.src.order.model.*;
 import com.example.demo.src.shop.model.GetShopMenusRes;
+import com.fasterxml.jackson.databind.util.StdDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,8 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
 @Repository
 public class OrderDao {
 
@@ -43,7 +46,6 @@ public class OrderDao {
     }
 
     public List<GetOrderListRes> getOrderList(int userId) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM월 dd일");
         String getOrderListQuery = "SELECT OrderTable.orderId as orderId, OrderTable.createdAt as orderDate, OrderTable.orderStatus,\n" +
                 "       shopName, logoImgUrl, totalAmount, name as menuName, count(name) as menuCount,\n" +
                 "       if(( Shop.openTime<( select TIME(NOW()) ) ) and ( ( select TIME(NOW()) )<closeTime ), '영업중', '준비중') as 'openStatus'\n" +
@@ -55,10 +57,11 @@ public class OrderDao {
                 "GROUP BY OrderTable.orderId;";
         int getOrderListParams = userId;
         // 주문 id, 주문 날짜, 주문 상태, 가게 이름, 가게 로고, 주문메뉴 개수, 총 결제금액, 메뉴 이름, 가게 오픈 여부
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd", Locale.KOREA);
         return this.jdbcTemplate.query(getOrderListQuery,
                 (rs,rownum) -> new GetOrderListRes(
                         rs.getInt("orderId"),
-                        rs.getTimestamp("orderDate"),
+                        sdf.format(rs.getTimestamp("orderDate")),
                         rs.getString("orderStatus"),
                         rs.getString("shopName"),
                         rs.getString("logoImgUrl"),
@@ -104,12 +107,14 @@ public class OrderDao {
                 "    left join Shop on OrderTable.shopId=Shop.shopId\n" +
                 "where orderId=?;";
         int getOrderIdParams = orderId;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd", Locale.KOREA);
+
         //order Information : 주문상태, 가게 이름, 주문일시, 주문번호, 주문금액, 배달팁, 총 결제금액, 결제 방법
         return this.jdbcTemplate.queryForObject(getOrderInfoQuery,
                 (rs,rowNum) -> new GetOrderInfoRes(
                         rs.getString("orderStatus"),
                         rs.getString("shopName"),
-                        rs.getDate("createdAt"),
+                        sdf.format(rs.getTimestamp("createdAt")),
                         rs.getString("orderNumber"),
                         rs.getInt("price"),
                         rs.getInt("deliveryTip"),
@@ -127,6 +132,7 @@ public class OrderDao {
                 "    left join MenuOption on CartInfo.optionId = MenuOption.optionId\n" +
                 "where CartInfo.orderId=?;";
         int getOrderIdParams = orderId;
+
         // order Menu :  메뉴id, 주문 메뉴 이름, 메뉴 개수, 주문 메뉴 가격, 옵션id, 주문 옵션이름, 옵션 가격
         return this.jdbcTemplate.query(getOrderMenuQuery,
                 (rs,rowNum) -> new GetOrderMenuRes(
@@ -165,12 +171,14 @@ public class OrderDao {
                 "from OrderTable left join Shop on OrderTable.shopId=Shop.shopId\n" +
                 "where orderId=?;";
         int getOrderIdParams = orderId;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.KOREA);
+
         //# 주문 id, 주문 상태, 도착예상시각, 남은 시간, 배달주소, 가게 주소
         return this.jdbcTemplate.queryForObject(getOrderInfoQuery,
                 (rs,rowNum) -> new GetDeliveryStatusRes(
                         rs.getInt("orderId"),
                         rs.getString("orderStatus"),
-                        rs.getInt("arriveTime"),
+                        sdf.format(rs.getTimestamp("arriveTime")),
                         rs.getInt("leftTime"),
                         rs.getString("address"),
                         rs.getString("shopAddress")

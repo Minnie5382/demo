@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.example.demo.config.BaseResponseStatus.*;
+
 @RestController
 @RequestMapping("/reviews") // http://vici-minn.shop:9000/reviews
 public class ReviewController {
@@ -58,11 +60,18 @@ public class ReviewController {
     @ResponseBody
     @PostMapping("") // POST http://vici-minn.shop:9000/reviews
     public BaseResponse<PostReviewsRes> createReviews(@RequestBody PostReviewsReq postReviewsReq) {
-        // validation : 리뷰 내용이 500자 이하인가?
-        if(postReviewsReq.getContent().length() > 3) {
-            return new BaseResponse<>(BaseResponseStatus.POST_REVIEWS_INVALID_CONTENT);
-        }
         try{
+            // 회원용 API
+            int userIdByJwt = jwtService.getUserId();
+            if (postReviewsReq.getUserId() != userIdByJwt) {
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+
+            // validation : 리뷰 내용이 500자 이하인가?
+            if(postReviewsReq.getContent().length() > 500) {
+                return new BaseResponse<>(BaseResponseStatus.POST_REVIEWS_INVALID_CONTENT);
+            }
+
             PostReviewsRes postReviewsRes = reviewService.createReviews(postReviewsReq.getUserId(), postReviewsReq);
             return new BaseResponse<>(postReviewsRes);
         } catch(BaseException exception){

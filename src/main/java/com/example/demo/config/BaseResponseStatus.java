@@ -32,6 +32,10 @@ public enum BaseResponseStatus {
     POST_USERS_EMPTY_TELNUM(false, 2018, "휴대폰 번호를 입력해주세요."),
     POST_USERS_INVALID_TELNUM(false, 2019, "휴대폰 번호 형식을 확인해주세요."),
     POST_USERS_EXISTS_TELNUM(false,2020,"이미 가입된 휴대폰 번호입니다."),
+    POST_USERS_EMPTY_PWD(false, 2021, "비밀번호를 입력해주세요."),
+    DELETE_FAIL_USER(false, 2022, "회원 탈퇴가 되지 않았습니다."),
+    POST_USERS_EMPTY_NICKNAME(false,2023,"닉네임을 입력해주세요."),
+    POST_USERS_EXISTS_NICKNAME(false,2023,"중복된 닉네임입니다."),
     // reviews
     POST_REVIEWS_INVALID_CONTENT(false,2030, "최대 입력 글자 수는 500자입니다."),
     DELETE_FAIL_REVIEW(false, 2031, "리뷰를 삭제하지 못했습니다."),
@@ -39,6 +43,7 @@ public enum BaseResponseStatus {
 
     // shops
     SHOPS_EMPTY_SHOP_ID(false, 2050, "존재하지 않거나 접근 불가한 가게입니다."),
+
     //orders
     ORDERS_EMPTY_ORDER_ID(false, 2060, "존재하지 않거나 접근 불가한 주문건입니다."),
 

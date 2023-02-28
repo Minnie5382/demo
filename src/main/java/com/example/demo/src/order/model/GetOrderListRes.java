@@ -16,13 +16,12 @@ public class GetOrderListRes {
 //    ResultSet rs=pstmt.executeQuery();
 //    Date date=rs.getTimestamp("reg_date");
     private int orderId;
-    private Date orderDate;
+    private String orderDate;
     private String orderStatus;
     private String shopName;
     private String logoImgUrl;
     private int menuCount;
     private int totalAmount;
     private String menuName;
-
     private String openStatus;
 }

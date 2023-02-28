@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.example.demo.config.BaseResponseStatus.INVALID_USER_JWT;
+
 @RestController
 @RequestMapping("/orders") // http://vici-minn.shop/orders
 public class OrderController {
@@ -34,7 +36,7 @@ public class OrderController {
     // 주문내역 조회 메서드
     @ResponseBody
     @GetMapping("") // GET http://127.0.0.1:9000/orders?userId=?
-    public BaseResponse<List<GetOrderListRes>> getOrderList(@RequestParam("userId") int userId) {
+    public BaseResponse<List<GetOrderListRes>> getOrderList(@RequestParam("userId") int userId) throws BaseException {
         try{
             List<GetOrderListRes> getOrderListRes = orderProvider.retrieveOrderList(userId);
             return new BaseResponse<>(getOrderListRes);

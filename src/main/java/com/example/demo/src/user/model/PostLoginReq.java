@@ -1,4 +1,5 @@
 package com.example.demo.src.user.model;
+
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostUserReq {
-    private String nickname;
+public class PostLoginReq {
     private String email;
     private String pwd;
-    private String userTelNum;
-    private String location;
-    private String emailReceive;
-    private String smsReceive;
-
 }
