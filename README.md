@@ -6,5 +6,8 @@ Rising Camp 14기 - Server 과정에서 실습용으로 구현한 소스코드�
 Java 19.0.1
 SpringBoot 2.7.5
 
-## 개발 시기
-2023.
+### 개발 기간
+2023/02/21 ~ 2023/03/01
+
+### API 명세서 (스트레드 시트)
+https://docs.google.com/spreadsheets/d/1mi80qcEIyGgB_-Pf1BddXNEGeUWTFE737sZe9JqBoMY/edit#gid=716281787
